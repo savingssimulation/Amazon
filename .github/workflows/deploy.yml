@@ -1,4 +1,4 @@
-name: Build and Deploy Simple Site
+name: Build and Deploy to GitHub Pages
 on:
   push:
     branches: ["main"]
@@ -7,6 +7,9 @@ permissions:
   contents: read
   pages: write
   id-token: write
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 jobs:
   deploy:
     environment:
@@ -16,13 +19,43 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer:v2
+      
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-progress
+        
+      - name: Run Site Generator Script
+        run: php generate.php
+        
+      # ★★★ ここが、全てを解決する最後の仕上げです ★★★
+      - name: Prepare assets for deployment
+        run: |
+          # 以前は存在しなかったが、静的ファイル用にpublicフォルダを確実に作成する
+          mkdir -p public
+          # ルートにある静的ファイル (CSS, favicon等) をpublicにコピー
+          cp -f *.css public/ || echo "No CSS file at root"
+          cp -f *.png public/ || echo "No PNG file at root"
+          cp -f *.svg public/ || echo "No SVG file at root"
+          cp -f *.ico public/ || echo "No ICO file at root"
+          # imagesフォルダが存在すれば、中身ごとpublic/imagesにコピー
+          if [ -d "images" ]; then
+            mkdir -p public/images
+            cp -r images/* public/images/
+          fi
+          
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        
       - name: Upload artifact
-        # publicフォルダではなく、リポジトリのルート全体をアップロードする
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: './public'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
