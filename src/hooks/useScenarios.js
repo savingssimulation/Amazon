@@ -6,9 +6,12 @@ const useScenarios = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // Viteの'base'設定を自動的に反映させるため、相対パスでfetchする
+    const dataUrl = `${import.meta.env.BASE_URL}data.json`;
+
     const fetchData = async () => {
       try {
-        const response = await fetch('/data.json');
+        const response = await fetch(dataUrl);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
