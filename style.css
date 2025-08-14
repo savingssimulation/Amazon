@@ -1,0 +1,36 @@
+/* ★要件2.4: Amazonカラー */
+:root {
+    --color-cta-orange: #FF9900;
+    --color-link-blue: #0066C0;
+    --color-text-dark: #0F1111;
+    --color-bg-light: #f3f3f3;
+}
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+header, main {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+header img {
+    max-height: 40px;
+}
+a {
+    color: var(--color-link-blue);
+}
+.footer {
+    text-align: center;
+    font-size: 0.9em;
+    color: #555;
+}
