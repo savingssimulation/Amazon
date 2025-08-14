@@ -1,0 +1,36 @@
+{
+  "name": "amazon-savings-simulation",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "python scripts/build.py && vite build",
+    "preview": "vite preview",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "test:unit": "jest",
+    "test:e2e": "playwright test",
+    "mock:api": "node scripts/mock-api.js"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@playwright/test": "^1.45.1",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "express": "^4.19.2",
+    "jest": "^29.7.0",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "vite": "^5.3.1"
+  }
+}
