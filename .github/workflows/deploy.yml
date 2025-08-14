@@ -29,23 +29,7 @@ jobs:
           PAAPI_SECRET_KEY: ${{ secrets.PAAPI_SECRET_KEY }}
           PAAPI_ASSOCIATE_TAG: ${{ secrets.PAAPI_ASSOCIATE_TAG }}
         run: php generate.php
-
-      # ★★★ ここからが、全てを解決する最後の仕上げです ★★★
-      - name: Copy static assets to public directory
-        run: |
-          # public/images フォルダがなければ作成
-          mkdir -p public/images
-          # ルートにある静的ファイルをpublicにコピー
-          cp favicon.svg public/
-          cp apple-touch-icon.png public/
-          cp favicon.ico public/
-          cp style.css public/
-          # imagesフォルダの中身をpublic/imagesにコピー
-          if [ -d "images" ]; then
-            cp -r images/* public/images/
-          fi
-      # ★★★ 仕上げここまで ★★★
-
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
