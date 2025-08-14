@@ -1,4 +1,4 @@
-name: Build and Deploy Simple PHP Site
+name: Build and Deploy Simple Site
 on:
   push:
     branches: ["main"]
@@ -16,16 +16,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-      - name: Run Site Generator
-        run: php generate.php
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
       - name: Upload artifact
+        # publicフォルダではなく、リポジトリのルート全体をアップロードする
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './public'
+          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
