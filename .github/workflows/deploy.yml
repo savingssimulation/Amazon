@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -23,28 +23,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
       
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           npm install
           pip install -r scripts/requirements.txt
       
-      # ★★★ npm run build コマンドで、PythonとViteを連携させる ★★★
       - name: Build website
         run: npm run build
       
       - name: Setup Pages
         uses: actions/configure-pages@v5
         
-      # ★★★ デプロイ対象を './dist' に変更 ★★★
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -52,17 +52,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4```
-
-### **【最終確定・Vite対応版】`vite.config.js` (新規作成または上書き)**
-**ファイルパス:** `vite.config.js`
-```javascript
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  // ★★★ GitHub Pagesのサブディレクトリ設定 ★★★
-  base: '/Amazon/',
-})
+        uses: actions/deploy-pages@v4
