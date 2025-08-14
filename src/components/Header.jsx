@@ -6,7 +6,7 @@ const Header = () => {
     <header className="bg-gray-800 text-white shadow-md">
       <div className="container mx-auto px-4 py-4">
         <Link to="/" className="text-xl font-bold">
-          Fixed-term delivery
+          savingssimulation
         </Link>
       </div>
     </header>
