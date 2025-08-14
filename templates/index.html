@@ -1,0 +1,14 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+    <h2>ライフスタイル別 節約額シミュレーション</h2>
+    <ul>
+        {% for scenario in scenarios %}
+            <li>
+                <a href="{{ scenario.url }}">{{ scenario.title }}</a> - 年間節約額: {{ scenario.yearly_savings_str }}
+            </li>
+        {% else %}
+            <li>シナリオが見つかりませんでした。</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
