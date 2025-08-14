@@ -2,18 +2,18 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
     
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
 
-    <!-- ファビコン設定 (全てpublicフォルダからの相対パス) -->
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-    <link rel="shortcut icon" href="./favicon.ico">
+    <!-- ★★★ ファビコン設定 (絶対パスに修正) ★★★ -->
+    <link rel="icon" href="/Amazon/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/Amazon/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/Amazon/favicon.ico">
 
-    <!-- CSSの読み込み (publicフォルダからの相対パス) -->
-    <link rel="stylesheet" href="./style.css">
+    <!-- ★★★ CSSの読み込み (絶対パスに修正) ★★★ -->
+    <link rel="stylesheet" href="/Amazon/style.css">
 
     <!-- Google Analytics (IDはご自身のものにしてください) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RH0NKD2R69"></script>
@@ -34,9 +34,9 @@
 <body>
     <header class="site-header">
         <div class="container">
-            <a href="./" class="logo-link" title="トップページへ戻る">
-                {# ★★★ ロゴ画像のパスを /images/ 以下に修正 ★★★ #}
-                <img src="./images/logo.svg" alt="savingssimulation ロゴ" class="logo">
+            <a href="/Amazon/" class="logo-link" title="トップページへ戻る">
+                <!-- ★★★ ロゴ画像のパスを絶対パスに修正 ★★★ -->
+                <img src="/Amazon/images/logo.svg" alt="savingssimulation ロゴ" class="logo">
             </a>
         </div>
     </header>
