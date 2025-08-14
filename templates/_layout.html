@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    {# ★★★ タブ表示の修正 ★★★ #}
-    {# サイト名を 'savingssimulation' に統一 #}
-    <title>{{ title }} | savingssimulation</title>
-
+    <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
-    
+
+    <!-- ファビコン設定 (全てpublicフォルダからの相対パス) -->
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
     <link rel="shortcut icon" href="./favicon.ico">
+
+    <!-- CSSの読み込み (publicフォルダからの相対パス) -->
     <link rel="stylesheet" href="./style.css">
 
+    <!-- Google Analytics (IDはご自身のものにしてください) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RH0NKD2R69"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -23,6 +24,7 @@
       gtag('config', 'G-RH0NKD2R69');
     </script>
     
+    <!-- 構造化データ (JSON-LD) -->
     {% if json_ld %}
     <script type="application/ld+json">
         {{ json_ld|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}
@@ -33,8 +35,8 @@
     <header class="site-header">
         <div class="container">
             <a href="./" class="logo-link" title="トップページへ戻る">
-                {# ロゴ画像も、新しいサイト名に合わせるのが理想 #}
-                <img src="./logo.svg" alt="savingssimulation ロゴ" class="logo">
+                {# ★★★ ロゴ画像のパスを /images/ 以下に修正 ★★★ #}
+                <img src="./images/logo.svg" alt="savingssimulation ロゴ" class="logo">
             </a>
         </div>
     </header>
@@ -43,8 +45,6 @@
     
     <footer class="site-footer">
         <div class="container">
-            {# ★★★ フッター表示の修正 ★★★ #}
-            {# サイト名を 'savingssimulation' に統一 #}
             <p>&copy; {{ "now"|date("Y") }} savingssimulation. All rights reserved.</p>
         </div>
     </footer>
