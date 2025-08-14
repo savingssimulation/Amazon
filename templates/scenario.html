@@ -1,0 +1,25 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+    <article>
+        <h1>{{ scenario.meta.title }}</h1>
+        <div>{{ scenario.content_html|raw }}</div>
+        
+        <h2>シミュレーション結果</h2>
+        <p>年間節約額: ￥{{ simulation.yearly_savings|number_format }}</p>
+        
+        <h3>対象商品</h3>
+        <ul>
+        {% for product in simulation.products %}
+            <li>
+                <a href="{{ product.url }}" target="_blank">
+                    <img src="{{ product.image_url }}" alt="{{ product.title }}" width="100">
+                    {{ product.title }}
+                </a>
+                <p>通常価格: ￥{{ product.price|number_format }}</p>
+                <p>割引後価格: ￥{{ product.discounted_price|number_format }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </article>
+{% endblock %}
