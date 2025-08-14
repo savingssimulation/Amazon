@@ -3,19 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    
+    {# ★★★ タブ表示の修正 ★★★ #}
+    {# サイト名を 'savingssimulation' に統一 #}
+    <title>{{ title }} | savingssimulation</title>
+
     <meta name="description" content="{{ description }}">
+    
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    <link rel="shortcut icon" href="./favicon.ico">
     <link rel="stylesheet" href="./style.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RH0NKD2R69"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RH0NKD2R69');
+    </script>
+    
+    {% if json_ld %}
+    <script type="application/ld+json">
+        {{ json_ld|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}
+    </script>
+    {% endif %}
 </head>
 <body>
-    <header>
-        <h1>Fixed-term delivery</h1>
+    <header class="site-header">
+        <div class="container">
+            <a href="./" class="logo-link" title="トップページへ戻る">
+                {# ロゴ画像も、新しいサイト名に合わせるのが理想 #}
+                <img src="./logo.svg" alt="savingssimulation ロゴ" class="logo">
+            </a>
+        </div>
     </header>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-    <footer>
-        <p>&copy; {{ "now"|date("Y") }} Fixed-term delivery</p>
+
+    {% block content %}{% endblock %}
+    
+    <footer class="site-footer">
+        <div class="container">
+            {# ★★★ フッター表示の修正 ★★★ #}
+            {# サイト名を 'savingssimulation' に統一 #}
+            <p>&copy; {{ "now"|date("Y") }} savingssimulation. All rights reserved.</p>
+        </div>
     </footer>
 </body>
 </html>
